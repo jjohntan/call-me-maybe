@@ -12,6 +12,7 @@ installation, and/or execution.
 section listing classic references related to the topic (documen-
 tation, articles, tutorials, etc.), as well as a description of how AI was used —
 specifying for which tasks and which parts of the project.
+https://stackoverflow.com/questions/5098580/implementing-argmax-in-python
 
 ## Algorithm explanation: Describe your constrained decoding approach in detail
 
