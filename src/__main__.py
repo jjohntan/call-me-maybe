@@ -1,14 +1,5 @@
-import json
-import argparse
+from src.parser import parse_args, load_json_file
 from llm_sdk.llm_sdk import Small_LLM_Model
-
-# with open('data/input/function_calling_tests.json') as f:
-#     data = json.load(f)
-#     print(data)
-
-# with open('data/input/functions_definition.json') as f:
-#     data = json.load(f)
-#     print(data)
 
 
 # instantiate an object
@@ -37,37 +28,15 @@ from llm_sdk.llm_sdk import Small_LLM_Model
 
 # hightest_logit = argmax(r)
 # print(hightest_logit)
-
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Call Me Maybe: Function calling using constrained decoding with a small LLM model."
-    )
-    parser.add_argument(
-        "--functions_definition",
-        type=str,
-        default="data/input/functions_definition.json",
-        help="Path to the JSON file containing available function definitions (default: data/input/functions_definition.json)",
-    )
-    parser.add_argument(
-        "--input",
-        type=str,
-        default="data/input/function_calling_tests.json",
-        help="Path to the JSON file containing test prompts (default: data/input/function_calling_tests.json)",
-    )
-    parser.add_argument(
-        "--output",
-        type=str,
-        default="data/output/function_calling_results.json",
-        help="Path to the output JSON file to save results (default: data/output/function_calling_results.json)",
-    )
-    return parser.parse_args()
-
-
 def main() -> None:
     args = parse_args()
     print(f"Functions definition file: {args.functions_definition}")
     print(f"Input file: {args.input}")
     print(f"Output file: {args.output}")
+    functions = load_json_file(args.functions_definition)
+    print(type(functions))
+    print(functions)
+
 
 if __name__ == "__main__":
     main()
