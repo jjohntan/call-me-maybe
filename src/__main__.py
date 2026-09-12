@@ -36,6 +36,9 @@ def main() -> None:
     functions = load_json_file(args.functions_definition)
     print(type(functions))
     print(functions)
+    data = load_json_file(args.input)
+    print(type(data))
+    print(data)
 
 
 if __name__ == "__main__":
