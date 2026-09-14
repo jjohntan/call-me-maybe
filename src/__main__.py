@@ -2,11 +2,6 @@ from src.parser import parse_args, load_json_file
 from llm_sdk.llm_sdk import Small_LLM_Model
 
 
-# instantiate an object
-# model = Small_LLM_Model("Qwen/Qwen3-0.6B")
-# call encode method of the object
-# input_ids = model.encode("Hello World")
-# print(input_ids)# tensor([[9707, 4337]])
 
 # print(model.decode(input_ids))# ['Hello World']
 
@@ -30,15 +25,22 @@ from llm_sdk.llm_sdk import Small_LLM_Model
 # print(hightest_logit)
 def main() -> None:
     args = parse_args()
-    print(f"Functions definition file: {args.functions_definition}")
-    print(f"Input file: {args.input}")
-    print(f"Output file: {args.output}")
-    functions = load_json_file(args.functions_definition)
-    print(type(functions))
-    print(functions)
-    data = load_json_file(args.input)
-    print(type(data))
-    print(data)
+    # functions = load_json_file(args.functions_definition)
+    # print(type(functions))
+    # print(functions)
+    
+    # Prompt
+    prompts = load_json_file(args.input)
+    # print(type(prompts))
+    # print(prompts)
+    model = Small_LLM_Model("Qwen/Qwen3-0.6B")
+
+    # Tokenization
+    for prompt_item in prompts:
+        input_ids = model.encode(prompt_item["prompt"])
+        print(input_ids)
+
+
 
 
 if __name__ == "__main__":
